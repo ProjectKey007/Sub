@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subtitle Translation</title>
+</head>
+<body>
+
+<h1>Subtitle Translation</h1>
+
+<form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    <label for="video_id">Enter YouTube Video ID:</label>
+    <input type="text" id="video_id" name="video_id" required>
+    <button type="submit">Translate</button>
+</form>
+
+{% if video_id %}
+    <h2>Video ID: {{ video_id }}</h2>
+
+    {% if transcript_text %}
+        <h3>Transcript:</h3>
+        <pre>{{ transcript_text }}</pre>
+    {% endif %}
+
+    {% if translated_text %}
+        <h3>Translated Transcript:</h3>
+        <pre>{{ translated_text }}</pre>
+    {% endif %}
+
+    {% if time %}
+        <p>Processing Time: {{ time }} seconds</p>
+    {% endif %}
+
+
+{% endif %}
+
+</body>
+</html>
